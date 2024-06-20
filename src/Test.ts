@@ -1,4 +1,5 @@
 
+
 import { DnsHeader } from './DnsHeader';
 import { DnsQuestion } from './DnsQuestion';
 import { DNSPacket } from './DNSPacket';
@@ -40,14 +41,19 @@ async function promptUserInput(question: string): Promise<string> {
     });
 }
 
-async function readFromFile(filePath: string): Promise<{ domain: string, queryType: string }> {
+async function readFromFile(filePath: string): Promise<{ domain: string, queryType: string }[]> {
     return new Promise((resolve, reject) => {
         fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
                 reject(err);
             } else {
-                const [domain, queryType] = data.split(',');
-                resolve({ domain: domain.trim(), queryType: queryType.trim() });
+                const queries = data.split('\n')
+                    .filter(line => line.trim() !== '') // Filter out empty lines
+                    .map(line => {
+                        const [domain, queryType] = line.split(',');
+                        return { domain: domain.trim(), queryType: queryType.trim() };
+                    });
+                resolve(queries);
             }
         });
     });
@@ -59,8 +65,14 @@ async function main() {
     if (inputMethod.toLowerCase() === 'file') {
         const filePath = await promptUserInput('Enter the file path: ');
         try {
-            const { domain, queryType } = await readFromFile(filePath);
-            await sendDnsQuery(domain, queryType);
+            const queries = await readFromFile(filePath);
+            for (const { domain, queryType } of queries) {
+                if (domain && queryType) {
+                    await sendDnsQuery(domain, queryType);
+                } else {
+                    console.error('Error: Both domain and query type are required in the file.');
+                }
+            }
         } catch (error) {
             console.error('Error reading from file:', error);
         }
@@ -80,6 +92,5 @@ async function main() {
 }
 
 main();
-
 
 
