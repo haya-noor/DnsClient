@@ -1,3 +1,0 @@
-google.com A
-github.com AAAA
-carbonteq.com cname
