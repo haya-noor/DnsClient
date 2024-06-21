@@ -59,8 +59,7 @@ Received UDP response with size: 44
 
 Received response: ae 21 81 80 00 01 00 01 00 00 00 00 06 67 6f 6f 67 6c 65 03 63 6f 6d 00 00 01 00 01 c0 0c 00 01 00 01 00 00 00 79 00 04 c0 b2 18 8e
 
-Parsed DnsHeader: 
-DnsHeader {
+Parsed DnsHeader: DnsHeader {
   id: 44577,
   flags: 33152,
   qdcount: 1,
@@ -79,9 +78,8 @@ Flags:
   Z (Reserved): 0
   RCODE (Response Code): 0
   Response Code: NoError (0)
-  
-Parsed Questions: 
-[ DnsQuestion { domain: 'google.com', queryType: 'A' } ]
+
+Parsed Questions: [ DnsQuestion { domain: 'google.com', queryType: 'A' } ]
 
 Parsed name: google.com, new offset: 30
 Parsed type: A (code: 1), new offset: 32
@@ -91,8 +89,7 @@ Parsed RDLength: 4, new offset: 40
 Parsed RData: 192.178.24.142, new offset: 44
 Parsed DNS answer from buffer, 16 bytes processed.
 
-Parsed Answers: 
-[
+Parsed Answers: [
   DnsAnswer {
     name: 'google.com',
     type: 'A',
