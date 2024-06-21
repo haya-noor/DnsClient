@@ -1,1 +1,4 @@
+github.com,A
+google.com,AAAA
+facebook.com,CNAME
 
