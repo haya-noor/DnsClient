@@ -2,7 +2,7 @@
 
 # DNS Query Tool
 
-This project is a DNS Query Tool implemented in TypeScript. It allows users to send DNS queries to a specified DNS server (e.g., Google DNS) and parse the responses. The tool supports querying for different record types such as A, AAAA, and CNAME.
+This project is a DNS Query Tool implemented in TypeScript. It allows users to send DNS queries to a specified DNS server (e.g., Google DNS, Cloudflare DNS) and parse the responses. The tool supports querying for different record types such as A, AAAA, and CNAME.
 
 ## Features
 
